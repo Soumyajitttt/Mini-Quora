@@ -1,5 +1,5 @@
 import { Client, Account, ID } from "appwrite";
-import conf from ".conf/conf.js";
+import conf from "../conf/conf.js";
 
 // const client = new Client()
 //     .setEndpoint(conf.appwriteUrl) // Your API Endpoint
