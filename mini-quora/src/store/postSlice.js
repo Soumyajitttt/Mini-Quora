@@ -1,25 +1,41 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const postSlice = createSlice({
   name: "post",
+
   initialState: {
-    posts: []
+    posts: [],
+    loading: false,
   },
-  reducers: { 
-    addPost: (state, action) => {
-      state.posts.push({
-        id: Date.now(),
-        content: action.payload.content,
-        title: action.payload.title
-      });
+
+  reducers: {
+    //it can be used for all services
+    setPosts: (state, action) => {
+      state.posts = action.payload;
     },
 
-    deletePost: (state, action) => {    
-      state.posts = state.posts.filter(post => post.id !== action.payload);
-    }
-  }
+    addPost: (state, action) => {
+      state.posts.push(action.payload);
+    },
+
+    updatePost: (state, action) => {
+      const { id, updatedData } = action.payload;
+      const index = state.posts.findIndex((post) => post.$id === id);
+
+      if (index !== -1) {
+        state.posts[index] = { ...state.posts[index], ...updatedData };
+      }
+    },
+
+    deletePost: (state, action) => {
+      state.posts = state.posts.filter(
+        (post) => post.$id !== action.payload
+      );
+    },
+  },
 });
 
+export const { setPosts, addPost, updatePost, deletePost } =
+  postSlice.actions;
 
-export const { addPost, deletePost } = postSlice.actions;
 export default postSlice.reducer;
