@@ -9,7 +9,7 @@ const postSlice = createSlice({
   },
 
   reducers: {
-    //it can be used for all services
+    //can be used for all services(load zyada padhta hai matt use karna)
     setPosts: (state, action) => {
       state.posts = action.payload;
     },
