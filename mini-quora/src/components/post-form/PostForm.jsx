@@ -19,35 +19,48 @@ export default function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+  try {
+    console.log("Form data:", data);
 
-            if (file) {
-                appwriteService.deleteFile(post.featuredImage);
-            }
+    if (post) {
+      const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+      console.log("Uploaded file:", file);
 
-            const dbPost = await appwriteService.updatePost(post.$id, {
-                ...data,
-                featuredImage: file ? file.$id : undefined,
-            });
+      if (file && post.featuredImage) {
+        await appwriteService.deleteFile(post.featuredImage);
+      }
 
-            if (dbPost) {
-                navigate(`/post/${dbPost.$id}`);
-            }
-        } else {
-            const file = await appwriteService.uploadFile(data.image[0]);
+      const dbPost = await appwriteService.updatePost(post.$id, {
+        ...data,
+        featuredImage: file ? file.$id : post.featuredImage,
+      });
 
-            if (file) {
-                const fileId = file.$id;
-                data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+      console.log("Updated post:", dbPost);
+      if (dbPost) navigate(`/post/${dbPost.$id}`);
+    } else {
+      const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+      console.log("Uploaded file:", file);
 
-                if (dbPost) {
-                    navigate(`/post/${dbPost.$id}`);
-                }
-            }
-        }
-    };
+      if (!file) {
+        console.error("No file uploaded");
+        return;
+      }
+
+      const dbPost = await appwriteService.createPost({
+        ...data,
+        featuredImage: file.$id,
+        userId: userData.$id,
+      });
+
+      console.log("Created post:", dbPost);
+      if (dbPost) navigate(`/post/${dbPost.$id}`);
+    }
+  } catch (err) {
+    console.error("Submit error:", err);
+    alert("Error submitting post: " + err.message);
+  }
+};
+
 
     const slugTransform = useCallback((value) => {
         if (value && typeof value === "string")
