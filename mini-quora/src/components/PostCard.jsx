@@ -6,8 +6,8 @@ function PostCard({$id, title, featuredImage}) {  // Changed 'image' to 'feature
     
   return (
     <Link to={`/post/${$id}`}>
-        <div className='w-full bg-gray-100 rounded-xl p-4'>
-            <div className='w-full justify-center mb-4'>
+        <div className='w-full  bg-gray-600 rounded-xl p-4 border border-t-2 border-t-black'>
+            <div className='w-full justify-center mb-4 border border-t-2 border-t-black rounded-xl'>
                 <img 
                   src={featuredImage ? appwriteService.getFilePreviewURL(featuredImage) : "https://via.placeholder.com/300"} 
                   alt={title}

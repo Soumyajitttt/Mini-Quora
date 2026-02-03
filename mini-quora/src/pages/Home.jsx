@@ -72,7 +72,7 @@ function Home() {
                             <h1 className="text-2xl font-bold hover:text-gray-500">
                                 No posts yet. Create your first post!
                             </h1>
-                            <h3 className=" font-bold text-gray-700 hover:text-gray-500">refresh to get posts</h3>
+                            <h3 className=" font-bold text-gray-700 hover:text-gray-500">refresh to load posts</h3>
                         </div>
                     </div>
                 </Container>
