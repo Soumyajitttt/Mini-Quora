@@ -19,48 +19,55 @@ export default function PostForm({ post }) {
     const userData = useSelector((state) => state.auth.userData);
 
     const submit = async (data) => {
-  try {
-    console.log("Form data:", data);
+        try {
+            console.log("Form data:", data);
+            console.log("User data:", userData); 
 
-    if (post) {
-      const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-      console.log("Uploaded file:", file);
+            
+            if (!userData) {
+                alert("You must be logged in to create a post");
+                navigate("/login");
+                return;
+            }
 
-      if (file && post.featuredImage) {
-        await appwriteService.deleteFile(post.featuredImage);
-      }
+            if (post) {
+                const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+                console.log("Uploaded file:", file);
 
-      const dbPost = await appwriteService.updatePost(post.$id, {
-        ...data,
-        featuredImage: file ? file.$id : post.featuredImage,
-      });
+                if (file && post.featuredImage) {
+                    await appwriteService.deleteFile(post.featuredImage);
+                }
 
-      console.log("Updated post:", dbPost);
-      if (dbPost) navigate(`/post/${dbPost.$id}`);
-    } else {
-      const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-      console.log("Uploaded file:", file);
+                const dbPost = await appwriteService.updatePost(post.$id, {
+                    ...data,
+                    featuredImage: file ? file.$id : post.featuredImage,
+                });
 
-      if (!file) {
-        console.error("No file uploaded");
-        return;
-      }
+                console.log("Updated post:", dbPost);
+                if (dbPost) navigate(`/post/${dbPost.$id}`);
+            } else {
+                const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+                console.log("Uploaded file:", file);
 
-      const dbPost = await appwriteService.createPost({
-        ...data,
-        featuredImage: file.$id,
-        userId: userData.$id,
-      });
+                if (!file) {
+                    alert("Please select an image");
+                    return;
+                }
 
-      console.log("Created post:", dbPost);
-      if (dbPost) navigate(`/post/${dbPost.$id}`);
-    }
-  } catch (err) {
-    console.error("Submit error:", err);
-    alert("Error submitting post: " + err.message);
-  }
-};
+                const dbPost = await appwriteService.createPost({
+                    ...data,
+                    featuredImage: file.$id,
+                    userId: userData.$id, 
+                });
 
+                console.log("Created post:", dbPost);
+                if (dbPost) navigate(`/post/${dbPost.$id}`);
+            }
+        } catch (err) {
+            console.error("Submit error:", err);
+            alert("Error submitting post: " + err.message);
+        }
+    };
 
     const slugTransform = useCallback((value) => {
         if (value && typeof value === "string")

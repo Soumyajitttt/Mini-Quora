@@ -8,18 +8,18 @@ function AllPosts() {
     useEffect(() => {
         appwriteService.getPosts([]).then((posts) => {
             if (posts) {
-                console.log("Fetched posts:", posts.documents); // Debug log
+                console.log("Fetched posts:", posts.documents);
                 setPosts(posts.documents)
             }
         })
-    }, []) // Move getPosts INSIDE useEffect
+    }, []) 
     
   return (
     <div className='w-full py-8'>
         <Container>
             <div className='flex flex-wrap'>
                 {posts.map((post) => {
-                    console.log("Rendering post:", post); // Debug: check the post object
+                    console.log("Rendering post:", post); 
                     return (
                         <div key={post.$id} className='p-2 w-1/4'>
                             <PostCard {...post} />
