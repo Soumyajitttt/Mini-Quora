@@ -18,13 +18,13 @@ function Footer() {
                 A modern platform for sharing thoughts, stories, and ideas with the world. Create, publish, and connect with readers everywhere.
               </p>
               <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-slate-700 transition-colors duration-300 flex items-center justify-center cursor-pointer">
+                <div className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-rose-600 transition-colors duration-300 flex items-center justify-center cursor-pointer">
                   <span className="text-xs">𝕏</span>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-slate-700 transition-colors duration-300 flex items-center justify-center cursor-pointer">
+                <div className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-rose-600 transition-colors duration-300 flex items-center justify-center cursor-pointer">
                   <span className="text-xs">in</span>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-slate-700 transition-colors duration-300 flex items-center justify-center cursor-pointer">
+                <div className="w-10 h-10 rounded-full bg-slate-700/50 hover:bg-rose-600 transition-colors duration-300 flex items-center justify-center cursor-pointer">
                   <span className="text-xs">gh</span>
                 </div>
               </div>
@@ -38,7 +38,7 @@ function Footer() {
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Features
@@ -46,7 +46,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Pricing
@@ -54,7 +54,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Affiliate Program
@@ -62,7 +62,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Press Kit
@@ -78,7 +78,7 @@ function Footer() {
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Account
@@ -86,7 +86,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Help
@@ -94,7 +94,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Contact Us
@@ -102,7 +102,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Customer Support
@@ -118,7 +118,7 @@ function Footer() {
             <ul className="space-y-4">
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Terms &amp; Conditions
@@ -126,7 +126,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Privacy Policy
@@ -134,7 +134,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  className="text-slate-400 hover:text-white transition-colors duration-200 text-sm"
+                  className="text-slate-400 hover:text-rose-600 transition-colors duration-200 text-sm"
                   to="/"
                 >
                   Licensing

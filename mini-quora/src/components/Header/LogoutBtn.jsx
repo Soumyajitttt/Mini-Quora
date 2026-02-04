@@ -16,7 +16,7 @@ function LogoutBtn() {
     }
   return (
     <button
-      className='px-5 py-2.5 text-sm font-medium text-slate-700 hover:text-white hover:bg-slate-900 rounded-lg transition-all duration-200 border border-slate-300 hover:border-slate-900 flex items-center gap-2 group'
+      className='px-5 py-2.5 text-sm font-medium text-slate-700 hover:text-white hover:bg-rose-600 rounded-lg transition-all duration-200 border border-slate-300 hover:border-rose-600 flex items-center gap-2 group'
       onClick={logoutHandler}
     >
       <svg 

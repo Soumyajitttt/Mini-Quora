@@ -53,10 +53,10 @@ function Header() {
               <li key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className='px-5 py-2.5 text-sm font-medium text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all duration-200 relative group'
+                className='px-5 py-2.5 text-sm font-medium text-slate-700 hover:text-rose-600 hover:bg-slate-100 rounded-lg transition-all duration-200 relative group' 
                 >
                   {item.name}
-                  <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-slate-900 group-hover:w-full transition-all duration-300'></span>
+                  <span className='absolute bottom-0 left-0 w-0 h-0.5 bg-rose-600 group-hover:w-full transition-all duration-300'></span>
                 </button>
               </li>
             ) : null
