@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { useForm } from "react-hook-form";
-import { Button, Input, RTE, Select } from "..";
+import { useForm, Controller } from "react-hook-form"; 
+import { Button, Input, RTE , Select, CustomSelect} from ".."; 
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -20,10 +20,6 @@ export default function PostForm({ post }) {
 
     const submit = async (data) => {
         try {
-            console.log("Form data:", data);
-            console.log("User data:", userData); 
-
-            
             if (!userData) {
                 alert("You must be logged in to create a post");
                 navigate("/login");
@@ -32,7 +28,6 @@ export default function PostForm({ post }) {
 
             if (post) {
                 const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-                console.log("Uploaded file:", file);
 
                 if (file && post.featuredImage) {
                     await appwriteService.deleteFile(post.featuredImage);
@@ -43,11 +38,9 @@ export default function PostForm({ post }) {
                     featuredImage: file ? file.$id : post.featuredImage,
                 });
 
-                console.log("Updated post:", dbPost);
                 if (dbPost) navigate(`/post/${dbPost.$id}`);
             } else {
                 const file = data.image?.[0] ? await appwriteService.uploadFile(data.image[0]) : null;
-                console.log("Uploaded file:", file);
 
                 if (!file) {
                     alert("Please select an image");
@@ -60,7 +53,6 @@ export default function PostForm({ post }) {
                     userId: userData.$id, 
                 });
 
-                console.log("Created post:", dbPost);
                 if (dbPost) navigate(`/post/${dbPost.$id}`);
             }
         } catch (err) {
@@ -127,12 +119,25 @@ export default function PostForm({ post }) {
                         />
                     </div>
                 )}
-                <Select
-                    options={["active", "inactive"]}
-                    label="Status"
-                    className="mb-4"
-                    {...register("status", { required: true })}
+                
+                {/* --- CHANGED SECTION START --- */}
+                <Controller
+                    name="status"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field: { onChange, value } }) => (
+                        <CustomSelect
+                            options={["active", "inactive"]}
+                            label="Status"
+                            value={value}
+                            onChange={onChange}
+                        />
+            
+                    )}
                 />
+                <br/>
+                {/* --- CHANGED SECTION END --- */}
+
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {post ? "Update" : "Submit"}
                 </Button>
