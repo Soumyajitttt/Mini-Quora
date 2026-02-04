@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @layer base {
   ::selection {
-    background-color: rgb(255, 0, 89);
+    background-color: rgb(225, 29, 72);
     color: rgb(255, 255, 255);              
   }
 }
